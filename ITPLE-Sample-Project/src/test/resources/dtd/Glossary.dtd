@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT glossary (title, GlossDiv)>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT GlossDiv (title, GlossList)>
+<!ELEMENT GlossList (GlossEntry)>
+<!ELEMENT GlossEntry ANY>
+	<!ATTLIST GlossEntry 
+	ID CDATA #REQUIRED 
+	SortAs CDATA #REQUIRED>
+<!ELEMENT GlossTerm (#PCDATA)>
+<!ELEMENT Acronym (#PCDATA)>
+<!ELEMENT Abbrev (#PCDATA)>
+<!ELEMENT GlossDef (para, GlossSeeAlso+)>
+<!ELEMENT para (#PCDATA)>
+<!ELEMENT GlossSeeAlso (#PCDATA)>
+<!ATTLIST GlossSeeAlso OtherTerm ID #REQUIRED >
+<!ATTLIST GlossSee OtherTerm CDATA #REQUIRED>

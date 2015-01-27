@@ -1,0 +1,9 @@
+diff a/ITPLE-Sample-Project/src/test/java/com/itple/sample/json/jsonobject/JsonGlossaryTest.java b/ITPLE-Sample-Project/src/test/java/com/itple/sample/json/jsonobject/JsonGlossaryTest.java	(rejected hunks)
+@@ -39,7 +39,6 @@
+ 		logger.debug("ffffa");
+ 		logger.debug("testsss");
+ 		logger.debug("test barnch rebase test");
+-		
+ 		logger.debug("test branch merge test");
+ 	}
+ 

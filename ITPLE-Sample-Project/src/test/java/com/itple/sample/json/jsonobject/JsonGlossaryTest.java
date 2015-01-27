@@ -40,9 +40,6 @@ public class JsonGlossaryTest {
 		logger.debug("testsss");
 		logger.debug("test barnch rebase test");
 		logger.debug("test");
-		logger.debug("reabase test");
-		
-		
 	}
 
 	@Test

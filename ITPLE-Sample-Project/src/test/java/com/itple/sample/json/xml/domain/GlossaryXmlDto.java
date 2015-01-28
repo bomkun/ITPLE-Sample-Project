@@ -7,7 +7,6 @@ import org.simpleframework.xml.Element;
 import org.simpleframework.xml.ElementList;
 import org.simpleframework.xml.Root;
 
-
 @Root(name = "glossary")
 public class GlossaryXmlDto {
 
@@ -17,7 +16,7 @@ public class GlossaryXmlDto {
 
 	@Element
 	private String title;
-	
+
 	@Element(name = "GlossDiv")
 	private GlossDiv glossDiv;
 
@@ -60,7 +59,7 @@ public class GlossaryXmlDto {
 
 				@Element(name = "Abbrev")
 				private String abbrev;
-				
+
 				public String getId() {
 					return id;
 				}
@@ -113,7 +112,7 @@ public class GlossaryXmlDto {
 				}
 
 				public static class GlossDef {
-					
+
 					public GlossDef() {
 					}
 
@@ -131,7 +130,6 @@ public class GlossaryXmlDto {
 					@ElementList(inline = true)
 					private List<GlossSeeAlso> glossSeeAlso;
 
-			
 					@Root(name = "GlossSeeAlso")
 					public static class GlossSeeAlso {
 
@@ -164,7 +162,7 @@ public class GlossaryXmlDto {
 					public void setGlossSeeAlso(List<GlossSeeAlso> glossSeeAlso) {
 						this.glossSeeAlso = glossSeeAlso;
 					}
-					
+
 					@Override
 					public String toString() {
 						return "GlossDef [para=" + para + ", glossSeeAlso=" + glossSeeAlso + "]";
@@ -223,7 +221,6 @@ public class GlossaryXmlDto {
 				this.glossEntry = glossEntry;
 			}
 
-			
 			@Override
 			public String toString() {
 				return "GlossList [glossEntry=" + glossEntry + "]";
@@ -246,7 +243,7 @@ public class GlossaryXmlDto {
 		public void setGlossList(GlossList glossList) {
 			this.glossList = glossList;
 		}
-		
+
 		@Override
 		public String toString() {
 			return "GlossDiv [title=" + title + ", glossList=" + glossList + "]";
@@ -268,7 +265,7 @@ public class GlossaryXmlDto {
 	public void setGlossDiv(GlossDiv glossDiv) {
 		this.glossDiv = glossDiv;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "GlossaryDto [title=" + title + ", glossDiv=" + glossDiv + "]";

@@ -37,12 +37,6 @@ public class JacksonGlossaryTest {
 		String json = mapper.writeValueAsString(glossaryDto);
 
 		logger.debug("String to Json ---->" + json);
-
-		logger.debug("String to json ----->"+ glossaryDto.toString());
-		
-		// logger.debug("Json to String ---->" + glossaryDto.toString());
-
-		
 		
 		assertEquals(glossaryDto.getGlossary().getGlossDiv().getTitle(), "S");
 		assertEquals(glossaryDto.getGlossary().getGlossDiv().getGlossList().getGlossEntry().getGlossTerm(), "Standard Generalized Markup Language");

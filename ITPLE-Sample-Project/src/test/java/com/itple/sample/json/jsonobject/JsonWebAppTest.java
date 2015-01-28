@@ -37,9 +37,6 @@ public class JsonWebAppTest {
 		assertEquals(json.getJSONObject("web-app").getJSONObject("servlet-mapping").get("cofaxAdmin"), "/admin/*");
 	}
 
-	/**
-	 * jsonArray 배열 json을 선언할 때 사용
-	 */
 	@Test
 	public void JsonToString() throws Exception {
 

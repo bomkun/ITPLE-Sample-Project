@@ -2,8 +2,6 @@ package com.itple.sample.json.jackson.domain;
 
 import java.util.Arrays;
 
-import org.codehaus.jackson.annotate.JsonIgnore;
-import org.codehaus.jackson.annotate.JsonIgnoreProperties;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 public class GlossaryDto {

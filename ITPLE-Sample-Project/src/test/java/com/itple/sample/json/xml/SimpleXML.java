@@ -4,7 +4,6 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -16,7 +15,6 @@ import com.itple.sample.json.xml.domain.SimpleTest.TestClass.Example;
 
 public class SimpleXML {
 
-	@Ignore
 	@Test
 	public void simpleTest() throws Exception {
 		

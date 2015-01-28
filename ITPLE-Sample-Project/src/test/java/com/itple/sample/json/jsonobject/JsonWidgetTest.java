@@ -26,7 +26,7 @@ public class JsonWidgetTest {
 		logger.debug("String to Json ----->" + json.toString());
 		assertEquals(json.getJSONObject("widget").getString("debug"), "on");
 		assertEquals(json.getJSONObject("widget").getJSONObject("window").get("height"), 500);
-		// assertEquals(json.getJSONObject("widget").getJSONObject("image").get("hOffset"),260);
+		assertEquals(json.getJSONObject("widget").getJSONObject("image").get("hOffset"),250);
 
 	}
 
@@ -70,14 +70,8 @@ public class JsonWidgetTest {
 
 		assertEquals(json.getJSONObject("widget").getString("debug"), "on");
 		assertEquals(json.getJSONObject("widget").getJSONObject("window").get("height"), "500");
-		// assertEquals(json.getJSONObject("widget").getJSONObject("image").get("hOffset"),
-		// 260);
-
 		assertFalse(json.getJSONObject("widget").getJSONObject("image").get("hOffset").equals("260"));
-		
-		assertTrue(json.getJSONObject("widget").getJSONObject("window").get("height").equals("501"));
-		
-		
+		assertTrue(json.getJSONObject("widget").getJSONObject("window").get("height").equals("500"));
 		assertFalse(Integer.parseInt((String) json.getJSONObject("widget").getJSONObject("image").get("hOffset")) == 260);
 	}
 

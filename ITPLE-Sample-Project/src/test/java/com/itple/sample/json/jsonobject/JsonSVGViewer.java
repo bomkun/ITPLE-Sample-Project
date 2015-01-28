@@ -1,6 +1,8 @@
 package com.itple.sample.json.jsonobject;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -43,6 +45,10 @@ public class JsonSVGViewer {
 		json.put("items", jsonArray);
 
 		logger.debug("Json to String -----> " + json.toString());
+		
+		assertEquals(json.getJSONObject("menu").getString("header"), "SVG Viewer");
+		assertEquals(json.getJSONArray("items").getJSONObject(0).getString("id"),"Open");
+		assertEquals(json.getJSONArray("items").getJSONObject(0).getString("label"),"Open New");
 
 	}
 

@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!ELEMENT menu (header,item+)>
-<!ELEMENT header (#PCDATA)>
-<!ELEMENT item (#PCDATA)>
-<!ATTLIST item
-		action CDATA #REQUIRED
-		id CDATA #REQUIRED>

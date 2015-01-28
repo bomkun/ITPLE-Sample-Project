@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -34,28 +33,12 @@ public class GlossaryXml {
 	
 	private static final Logger logger = Logger.getLogger(GlossaryXml.class.getName());
 	
-	@Ignore
 	@Test
 	public void xmlToObject() throws Exception {
 
 		Serializer serializer = new Persister();
-	
-		/*
-		String input ="<glossary><title>example glossary</title>"
-				+ "<GlossDiv><title>S</title>" + "<GlossList>"
-				+ "<GlossEntry ID=\"SGML\" SortAs=\"SGML\">" + "<GlossTerm>Standard Generalized Markup Language</GlossTerm>" + "<Acronym>SGML</Acronym>"
-				+ "<Abbrev>ISO 8879:1986</Abbrev>" + "<GlossDef>" + "<para>A meta-markup language, used to create markup languages such as DocBook.</para>"
-				+ "<GlossSeeAlso OtherTerm=\"GML\"/>"
-				+ "<GlossSeeAlso OtherTerm=\"XML\"/>"
-				+ "</GlossDef>"
-				+ "<GlossSee OtherTerm=\"markup\"/>"
-				+ "</GlossEntry>" 
-				+ "</GlossList>" 
-				+ "</GlossDiv>" 
-				+ "</glossary>";
-		 */
 		
-		File source = new File("Glossary.xml");
+		File source = new File(RESOURCE_PATH + "/Glossary.xml");
 		
 		GlossaryXmlDto glossaryDto = serializer.read(GlossaryXmlDto.class, source);
 	
@@ -67,7 +50,6 @@ public class GlossaryXml {
 		assertTrue(glossaryDto.getTitle().equals("example glossary"));
 		assertNotNull(glossaryDto.getGlossDiv().getGlossList().getGlossEntry().getAbbrev());
 	}
-	
 	
 	@Test
 	public void objectToXml() throws Exception {

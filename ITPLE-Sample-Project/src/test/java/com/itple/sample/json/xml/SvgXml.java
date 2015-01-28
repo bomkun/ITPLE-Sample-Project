@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -32,34 +31,7 @@ public class SvgXml {
 		
 		Serializer serializer = new Persister();
 		
-		/*
-		String input = "<menu><header>Adobe SVG Viewer</header>"
-				+ "<item action=\"Open\" id=\"Open\">Open</item>"
-				+"<item action=\"OpenNew\" id=\"OpenNew\">Open New</item>"
-			
-				+"<item action=\"ZoomIn\" id=\"ZoomIn\">Zoom In</item>"
-				+"<item action=\"ZoomOut\" id=\"ZoomOut\">Zoom Out</item>"
-			    +"<item action=\"OriginalView\" id=\"OriginalView\">Original View</item>"
-			
-				+"<item action=\"Quality\" id=\"Quality\">Quality</item>"
-				+"<item action=\"Pause\" id=\"Pause\">Pause</item>"
-				+"<item action=\"Mute\" id=\"Mute\">Mute</item>"
-			
-				+"<item action=\"Find\" id=\"Find\">Find...</item>"
-				+"<item action=\"FindAgain\" id=\"FindAgain\">Find Again</item>"
-				+"<item action=\"Copy\" id=\"Copy\">Copy</item>"
-				+"<item action=\"CopyAgain\" id=\"CopyAgain\">Copy Again</item>"
-				+"<item action=\"CopySVG\" id=\"CopySVG\">Copy SVG</item>"
-				+"<item action=\"ViewSVG\" id=\"ViewSVG\">View SVG</item>"
-				+"<item action=\"ViewSource\" id=\"ViewSource\">View Source</item>"
-				+"<item action=\"SaveAs\" id=\"SaveAs\">Save As</item>"
-				
-				+"<item action=\"Help\" id=\"Help\">Help</item>"
-				+"<item action=\"About\" id=\"About\">About Adobe CVG Viewer...</item>"
-				+"</menu>";
-		*/
-		
-		File source = new File("Svg.xml");
+		File source = new File(RESOURCE_PATH + "/Svg.xml");
 		
 		Menu svgDto =  serializer.read(Menu.class, source);
 		

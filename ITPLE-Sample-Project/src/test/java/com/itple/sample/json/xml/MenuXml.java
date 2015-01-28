@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -28,23 +27,12 @@ public class MenuXml {
 	
 	private static final Logger logger = Logger.getLogger(MenuXml.class.getName());
 
-	@Ignore
 	@Test
 	public void xmlToObject() throws Exception {
 
 		Serializer serializer = new Persister();
 
-		/*		
-		String input = "<menu id=\"file\" value=\"File\">"
-				+ "<popup>"
-				+ "<menuitem value=\"New\" onclick=\"CreateNewDoc()\" />"
-				+ "<menuitem value=\"Open\" onclick=\"OpenDoc()\" />"
-				+ "<menuitem value=\"Close\" onclick=\"CloseDoc()\" />"
-				+ "</popup>"
-			    + "</menu>";
-		*/
-
-		File source = new File("Menu.xml");
+		File source = new File(RESOURCE_PATH + "/Menu.xml");
 		
 		Menu menuDto = serializer.read(MenuDto.Menu.class, source);
 

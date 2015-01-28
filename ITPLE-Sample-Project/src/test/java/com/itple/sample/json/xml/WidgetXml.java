@@ -9,7 +9,6 @@ import java.io.OutputStreamWriter;
 import java.io.Writer;
 
 import org.apache.log4j.Logger;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
@@ -26,35 +25,12 @@ public class WidgetXml {
 
 	private static final Logger logger = Logger.getLogger(WidgetXml.class.getName());
 	
-	@Ignore
 	@Test
 	public void xmlToObject() throws Exception {
 		
 		Serializer serializer = new Persister();
 		
-		/*
-		String input = "<widget><debug>on</debug>"
-				+ "<window title=\"Sample Konfabulator Widget\">"
-                +"<name>main_window</name>"
-				+"<width>500</width>"
-                +"<height>500</height>"
-                +"</window>"
-                +"<image src=\"Images/Sun.png\" name=\"sun1\">"
-                +"<hOffset>250</hOffset>"
-                +"<vOffset>250</vOffset>"
-                +"<alignment>center</alignment>"
-                +"</image>"
-                +"<text data=\"Click Here\" size=\"36\" style=\"bold\">"
-                +"<name>text1</name>"
-                +"<hOffset>250</hOffset>"
-                +"<vOffset>100</vOffset>"
-                +"<alignment>center</alignment>"
-                +"<onMouseUp>sun1.opacity = (sun1.opacity / 100) * 90;</onMouseUp>"
-                +"</text>"
-                +"</widget>";
-		*/
-		
-		File source = new File("Widget.xml");
+		File source = new File(RESOURCE_PATH + "/Widget.xml");
 		
 		Widget widgetDto =  serializer.read(Widget.class, source);
 		

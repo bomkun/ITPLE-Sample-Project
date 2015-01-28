@@ -30,16 +30,6 @@ public class JsonGlossaryTest {
 
 		assertEquals(json.getJSONObject("glossary").get("title"), "example glossary");
 		assertEquals(json.getJSONObject("glossary").getJSONObject("GlossDiv").get("title"), "S");
-		assertEquals(json.getJSONObject("glossary").getJSONObject("GlossDiv").get("title"), "S");
-		logger.debug("merge test");
-		logger.debug("브랜치 테스트");
-		logger.debug("브랜치 테스트1");
-		logger.debug("브랜치 테스트1234");
-		logger.debug("테스트23454644");
-		logger.debug("ffffa");
-		logger.debug("testsss");
-		logger.debug("test barnch rebase test");
-		logger.debug("master branch merge test");
 	}
 
 	@Test

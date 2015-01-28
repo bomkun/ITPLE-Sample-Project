@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding= "UTF-8" ?>
+<!DOCTYPE menu SYSTEM "../dtd/Svg.dtd">
+<menu>
+   <header>Adobe SVG Viewer</header>
+   <item id="Open" action="Open">Open</item>
+   <item id="OpenNew" action="OpenNew">Open New</item>
+   <item id="ZoomIn" action="ZoomIn">Zoom In</item>
+   <item id="ZoomOut" action="ZoomOut">Zoom Out</item>
+   <item id="OriginalView" action="OriginalView">Original View</item>
+   <item id="Quality" action="Quality">Quality</item>
+   <item id="Pause" action="Pause">Pause</item>
+   <item id="Mute" action="Mute">Mute</item>
+   <item id="Find" action="Find">Find...</item>
+   <item id="FindAgain" action="FindAgain">Find Again</item>
+   <item id="Copy" action="Copy">Copy</item>
+   <item id="CopyAgain" action="CopyAgain">Copy Again</item>
+   <item id="CopySVG" action="CopySVG">Copy SVG</item>
+   <item id="ViewSVG" action="ViewSVG">View SVG</item>
+   <item id="ViewSource" action="ViewSource">View Source</item>
+   <item id="SaveAs" action="SaveAs">Save As</item>
+   <item id="Help" action="Help">Help</item>
+   <item id="About" action="About">About Adobe CVG Viewer...</item>
+</menu>

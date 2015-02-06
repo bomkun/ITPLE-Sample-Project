@@ -8,11 +8,13 @@
 	<script type="text/javascript" src="${contextPath}/resources/js/lib/jquery-1.8.0.js"></script>
 	<script type="text/javascript" src="${contextPath}/resources/js/lib/jquery-ui-1.11.1/jquery-ui.js"></script>
 	<script type="text/javascript" src="${contextPath}/resources/js/lib/jui/jui.min.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/js/lib/jui/jui.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/js/lib/jui/js/ui/button.js"></script>
-	<script type="text/javascript" src="${contextPath}/resources/js/lib/jui/js/ui/combo.js"></script>
-	
+
+	<script type="text/javascript" src="${contextPath}/resources/js/lib/jui/jui.js"></script>	
 	<link rel="stylesheet" type="text/css" href="${contextPath}/resources/js/lib/jui/jui.min.css">
+	
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.8.24/themes/base/jquery-ui.css">
+	
+	
 	
 </head>
 <body class="jui">
@@ -36,9 +38,17 @@
 				<th>Gender :</th>
 				<td>		
 				<div id="btn_radio_1" class="group">
-					<a class="btn btn-small btn-gray-purple" id="radio" value="male">Male</a>
-					<a class="btn btn-small btn-gray-purple" id="radio" value="female">Female</a>
+					<a class="btn btn-small btn-gray-purple" name="radio_btn" id="radio1" value="male">Male</a>
+					<a class="btn btn-small btn-gray-purple" name="radio_btn" id="radio2" value="female">Female</a>
 				</div>
+				<div id="radio">
+  					<input type="radio" id="radio1" name="radio" value="choice1"><label for="radio1">Choice 1</label>
+  					<input type="radio" id="radio2" name="radio" value="choice2"><label for="radio2">Choice 2</label>
+				</div>
+				<input type ="radio" name="test" value="y">a
+				<input type ="radio" name="test" value="n">b
+				<input type ="radio" name="test" value="z">c
+				
 				</td>
 			</tr>
 			<tr>
@@ -85,6 +95,10 @@
 
 <script type="text/javascript">
 	
+$(document).ready(function(){
+	
+	$( "#radio" ).buttonset();
+	
 	jui.ready([ "ui.button" ], function(button) {
 	var btn_radio_options = {
 		type: "radio",
@@ -107,22 +121,26 @@
 		});
 	});	
 	
+});	
+
+
+function doSubmit() {
 	
-	function doSubmit() {
-		
-		var name = $("#name").val();
-		var gender = $("#btn_radio_1").val();
-		var email = $("#email").val();
-		var phone = $("#phone").val();
-		var city = $("#city").val();
-		
-		console.log(name);
-		console.log(gender);
-		console.log(email);
-		console.log(phone);
-		console.log(city);
-		
-	}
+	var name = $("#name").val();
+	var gender = $('input:radio[name=radio]:checked').val();
+	var test = $("input:radio[name=test]:checked").val();
+	var email = $("#email").val();
+	var phone = $("#phone").val();
+	var city = $("#city").val();
+	
+	console.log(name);
+	console.log(gender);
+	console.log(test);
+	console.log(email);
+	console.log(phone);
+	console.log(city);
+	
+}
 	
 </script>
 	

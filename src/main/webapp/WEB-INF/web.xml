@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
 
+
+	<!-- context-param : 컨텍스트 초기화 파라미터. param-value에는 설정 파일 -->
+	
 	<context-param>
     	<param-name>contextConfigLocation</param-name>
     	<param-value>
@@ -8,10 +11,13 @@
 		</param-value>
   	</context-param>
   	
+  	<!-- ContextLoaderListener : 서로 다른 DispatcherServlet이 공통 빈을 필요로 하는 경우  -->
   	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   	</listener>
   
+  
+  	<!-- 인코딩 처리  -->
 	<filter>
     	<filter-name>encodingFilter</filter-name>
     	<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -30,28 +36,31 @@
     	<url-pattern>/*</url-pattern>
   </filter-mapping>  	
 
-  <servlet>
-    <servlet-name>appServlet</servlet-name>
-    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    <init-param>
-      <param-name>contextConfigLocation</param-name>
-      <param-value>/WEB-INF/spring/appServlet/servlet_context.xml</param-value>
-    </init-param>
-    <init-param>
-      <param-name>mappedfile</param-name>
-      <param-value>false</param-value>
-    </init-param>
-    <load-on-startup>1</load-on-startup>
-    <async-supported>true</async-supported>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>appServlet</servlet-name>
-   	<url-pattern>/</url-pattern>
-  </servlet-mapping>
-  <session-config>
-    <session-timeout>0</session-timeout>
-  </session-config>  	
-  
+	<!-- 서블릿 설정 -->
+   
+  	<servlet>
+    	<servlet-name>appServlet</servlet-name>
+    	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    	<init-param>
+      		<param-name>contextConfigLocation</param-name>
+      		<param-value>/WEB-INF/spring/appServlet/servlet_context.xml</param-value>
+    	</init-param>
+    	<init-param>
+      		<param-name>mappedfile</param-name>
+      		<param-value>false</param-value>
+    	</init-param>
+    		<load-on-startup>1</load-on-startup>
+    		<async-supported>true</async-supported>
+  	</servlet>
+  	
+  	<servlet-mapping>
+    	<servlet-name>appServlet</servlet-name>
+   		<url-pattern>/</url-pattern>
+  	</servlet-mapping>
+  		<session-config>
+    		<session-timeout>0</session-timeout>
+  		</session-config>  	
+  		 
    <welcome-file-list>
     	<welcome-file></welcome-file>
   </welcome-file-list>

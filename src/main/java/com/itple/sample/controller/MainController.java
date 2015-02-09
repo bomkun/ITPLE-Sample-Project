@@ -6,9 +6,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.itple.sample.common.interceptor.ContextPathInterceptor;
-
-
 @Controller
 public class MainController {
 	

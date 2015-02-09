@@ -14,20 +14,25 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd ">
 		
+	
+	<!-- 기본 패키지 내에서 @Controller로 표현된 클래스만 빈으로 등록함. root_context.xml과 반대 -->	
 	<context:component-scan base-package="com.itple.sample" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 	</context:component-scan>		
 		
+	<!--리소스 매핑 설정  -->	
 	<mvc:resources mapping="/resources/**" location="/resources/" />		
 	
+	<!-- 어노테이션 방식의 컨트롤러를 사용할 때 필요한 DispatcherServlet 전략 Bean을 자동으로 등록해줌 -->
 	<mvc:annotation-driven />
 	
-	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
+	<!-- 웹 애플리케이션 WAR 파일 내에 포함된 뷰 템플릿을 찾음. prefix : 접두어 , suffix : 접미어 -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
+	<!-- HandlerInterceptor를 상속하여 인터셉터를 구현. resources 밑에 있는 파일들을 매핑에서 제외.ContextInterceptor 호출  -->
 	<mvc:interceptors>
       	<mvc:interceptor>
       		<mvc:mapping path="/*"/>

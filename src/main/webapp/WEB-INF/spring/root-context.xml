@@ -9,8 +9,10 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
 	
+	<!-- AOP 적용 -->
 	<aop:config proxy-target-class="true"/>
 	
+	<!--기본 패키지 내 모든 스테레오 애노테이션으로 표현된 클래스를 bean으로 등록. @Controller로 표현된 클래스는 제외  -->
 	<context:annotation-config/>
 	<context:component-scan base-package="com.itple.sample ">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!ELEMENT menu (popup)>
-<!ATTLIST menu id CDATA #REQUIRED value CDATA #REQUIRED>
-<!ELEMENT popup (menuitem+)>
-<!ELEMENT menuitem (#PCDATA)>
-<!ATTLIST menuitem
-		value CDATA #REQUIRED
-		onclick CDATA #REQUIRED>

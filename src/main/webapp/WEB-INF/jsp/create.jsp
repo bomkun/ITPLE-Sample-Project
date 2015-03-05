@@ -26,28 +26,26 @@
 			<tr>
 				<th>Name :</th>
 				<td>
-				<input type="text" class="form-control" id="name">
+				<input type="text" class="form-control" name="name" id="name" value="">
 				</td>
 			</tr>
 			<tr>
 				<th>Gender :</th>
 				<td>		
-				<div id="radio">
-  					<label><input type="radio" id="radio1" name="radio" value="male">Male</label>
-  					<label><input type="radio" id="radio2" name="radio" value="female">Female</label>
-				</div>
+  					<input type="radio"  name="gender" value="male">Male
+  					<input type="radio"  name="gender" value="female">Female
 				</td>
 			</tr>
 			<tr>
 				<th>Email :</th>
 				<td>
-				<input type="text" id="email" class="form-control">
+				<input type="text" id="email" name ="email" class="form-control" value="">
 				</td>
 			</tr>			
 			<tr>
 				<th>Phone :</th>
 				<td>
-				<input type="text" id="phone" class="form-control" maxlength="11">
+				<input type="text" id="phone" name="phone" class="form-control" maxlength="11" value="">
 				</td>
 			</tr>			
 			<tr>
@@ -77,7 +75,7 @@ $(document).ready(function(){
 	$("#submit_btn").click(function() {
 		
 		var name = $("#name").val();
-		var gender = $('input:radio[name=radio]:checked').val();
+		var gender = $('input:radio[name=gender]:checked').val();
 		var email = $("#email").val();
 		var phone = $("#phone").val();
 		var city = $("#city").val();
@@ -89,7 +87,7 @@ $(document).ready(function(){
             return false;
         }
 		
-		if($('input:radio[name=radio]:checked').length <1 ) {
+		if($('input:radio[name=gender]:checked').length <1 ) {
 			alert("gender를 선택 하세요");
 			$("#radio1").focus();
 			return false;	
@@ -130,14 +128,16 @@ $(document).ready(function(){
         
         $.ajax({
         	type: "post",
-        	url : "http://localhost:8080/ITPLE-Sample-Project/create",
+        	url : "http://localhost:8080/ITPLE-Sample-Project/info",
         	data : $("#form").serialize(),
-        	dataType : "xml",
-        	 success: function(response){
+        	dataType : "json",
+        	 success: function(xhr){
         		 //성공시
+        		 alert("success");
         		  },
         		  error: function(){      
         		//실패시
+        		 alert("failed");
         		  }
         });
 	});

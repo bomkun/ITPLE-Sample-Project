@@ -106,7 +106,13 @@
 			<version>20140107</version>
 		</dependency>
 
-		
+		<!-- SimpleFramework xml  -->
+		<dependency>
+			<groupId>org.simpleframework</groupId>
+			<artifactId>simple-xml</artifactId>
+			<version>2.7.1</version>
+		</dependency>
+
 		<!-- jackson-core-asl -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>

@@ -13,7 +13,6 @@ public class MainController {
 	
 	@RequestMapping("")
 	public String index() throws Throwable {
-				
 		logger.debug("index!");
 		return "/index";
 	}

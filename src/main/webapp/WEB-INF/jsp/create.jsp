@@ -127,16 +127,22 @@ $(document).ready(function(){
         console.log(phone);
         console.log(city);
 
+        
+        $.ajax({
+        	type: "post",
+        	url : "http://localhost:8080/ITPLE-Sample-Project/create",
+        	data : $("#form").serialize(),
+        	dataType : "xml",
+        	 success: function(response){
+        		 //성공시
+        		  },
+        		  error: function(){      
+        		//실패시
+        		  }
+        });
 	});
 	
 });	
 
-
-
-	
 </script>
-	
-
 </html>
-
-

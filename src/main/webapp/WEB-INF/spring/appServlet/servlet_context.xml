@@ -32,13 +32,27 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 	
-	<!-- XML View Resolver  -->
-	<bean id="xmlViewResolver" class="org.springframework.web.servlet.view.XmlViewResolver">
-		<property name="order" value="1" />
-		<property name="location" value="/WEB-INF/spring/xml_views.xml" />
-	</bean>
-	
-	
+	<!-- xml ViewResolver -->
+
+<!-- 	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+	    <property name="mediaTypes">
+		  <map>
+		      <entry key="html" value="text/html"/>
+		      <entry key="json" value="application/json"/>
+		      <entry key="xml"  value="application/xml"/>
+		  </map>
+		</property>
+	     <property name="viewResolvers">
+		    <list>
+		      <bean class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+		        <property name="prefix" value="/WEB-INF/jsp/"/>
+		        <property name="suffix" value=".jsp"/>
+		      </bean>
+		    </list>
+		</property>
+	</bean>	 -->
+
 	<!-- HandlerInterceptor를 상속하여 인터셉터를 구현. resources 밑에 있는 파일들을 매핑에서 제외.ContextInterceptor 호출  -->
 	<mvc:interceptors>
       	<mvc:interceptor>

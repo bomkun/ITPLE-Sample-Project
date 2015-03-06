@@ -119,18 +119,11 @@ $(document).ready(function(){
 			return false;
 		}
         
-        console.log(name);
-        console.log(gender);
-        console.log(email);
-        console.log(phone);
-        console.log(city);
-
-        
         $.ajax({
         	type: "post",
         	url : "http://localhost:8080/ITPLE-Sample-Project/info",
         	data : $("#form").serialize(),
-        	dataType : "json",
+        	dataType : "xml",
         	 success: function(xhr){
         		 //성공시
         		 alert("success");

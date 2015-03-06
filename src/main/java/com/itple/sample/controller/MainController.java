@@ -1,9 +1,14 @@
 package com.itple.sample.controller;
 
 
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.simpleframework.xml.Serializer;
+import org.simpleframework.xml.core.Persister;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -31,7 +36,7 @@ public class MainController {
 	}
 	
 	@RequestMapping(value = "/info", method = RequestMethod.POST)
-	@ResponseBody
+	 @ResponseBody 
 	public User info(HttpServletRequest request, HttpServletResponse response) throws Throwable {
 	
 		User user = new User();
@@ -47,6 +52,18 @@ public class MainController {
 		user.setGender(gender);
 		user.setPhone(phone);
 		user.setCity(city);
+
+		Serializer serializer = new Persister();
+		
+		
+		Writer writer = new OutputStreamWriter(System.out);
+		
+		
+		logger.debug("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		logger.debug("data {} : " + user.toString());
+		
+		
+		serializer.write(user, writer);
 		
 		return user ;
 	}

@@ -1,16 +1,32 @@
 package com.itple.sample.common.domain;
 
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="user")
+@XmlAccessorType(XmlAccessType.NONE)
 public class User {
 
+	@XmlElement(name="name")
 	private String name;
+	
+	@XmlElement(name="gender")
 	private String gender;
+	
+	@XmlElement(name="email")
 	private String email;
+	
+	@XmlElement(name="phone")
 	private String phone;
+	
+	@XmlElement(name="city")
 	private String city;
 
 	public User() {
 
-	}
+	} 
 
 	public String getName() {
 		return name;

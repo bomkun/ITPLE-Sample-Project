@@ -62,7 +62,4 @@
 			<beans:bean class="com.itple.sample.common.interceptor.ContextPathInterceptor" />
 		</mvc:interceptor> 
     </mvc:interceptors>
-	
-	
-	
 </beans>

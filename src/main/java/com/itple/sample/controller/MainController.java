@@ -12,10 +12,13 @@ import org.simpleframework.xml.core.Persister;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.ServletRequestUtils;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.itple.sample.common.domain.User;
 
@@ -36,11 +39,9 @@ public class MainController {
 		return "/create";
 	}
 	
-	@RequestMapping(value = "/info", method = RequestMethod.POST)
-	 @ResponseBody
-	public User info(HttpServletRequest request, HttpServletResponse response) throws Throwable {
+	@RequestMapping(value = "/result", method = RequestMethod.POST)
+	public ModelAndView info(HttpServletRequest request, HttpServletResponse response, User user) throws Throwable {
 	
-		User user = new User();
 		
 		
 		String name = request.getParameter("name");
@@ -60,9 +61,23 @@ public class MainController {
 		logger.debug("data {} : " + user.toString());
 		
 		
-		return user ;
+		return new ModelAndView("/result", "user", user) ;
 	}
 	
+	@RequestMapping(value = "/result" , method = RequestMethod.GET)
+	public String result(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Throwable {
+		
+		
+		
+		User user = new User();
+		
+		model.put("user", user);
+		
+		logger.debug("result");
+		
+		
+		return "/result";
+	}
 	
 	
 }

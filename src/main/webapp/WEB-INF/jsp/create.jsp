@@ -198,14 +198,14 @@ $(document).ready(function(){
        
         $.ajax({
         	type: "post",
-        	url : "http://localhost:8080/ITPLE-Sample-Project/info",
+        	url : "http://localhost:8080/ITPLE-Sample-Project/result",
         	data : $("#form").serialize(),
         	dataType : "xml",
         	 success: function(xhr){
         		 //성공시
         		 alert("success");
-//         		 var listPage = "http://localhost:8080/ITPLE-Sample-Project/result";    
-// 				 $(location).attr('href',listPage);
+        		 var listPage = "http://localhost:8080/ITPLE-Sample-Project/result";    
+				 $(location).attr('href',listPage);
         		 
         	 },
         		  error: function(){      

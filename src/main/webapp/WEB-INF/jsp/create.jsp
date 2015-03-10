@@ -198,7 +198,7 @@ $(document).ready(function(){
        
         $.ajax({
         	type: "post",
-        	url : "http://localhost:8080/ITPLE-Sample-Project/result",
+        	url : "http://localhost:8080/ITPLE-Sample-Project/create",
         	data : $("#form").serialize(),
         	dataType : "xml",
         	 success: function(xhr){
@@ -208,7 +208,7 @@ $(document).ready(function(){
 				 $(location).attr('href',listPage);
         		 
         	 },
-        		  error: function(){      
+        		  error: function(xhr){      
         		//실패시
         		 alert("failed");
         		  }        

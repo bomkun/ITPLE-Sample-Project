@@ -1,4 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -200,12 +203,12 @@ $(document).ready(function(){
         	type: "post",
         	url : "http://localhost:8080/ITPLE-Sample-Project/create",
         	data : $("#form").serialize(),
-        	dataType : "xml",
-        	 success: function(xhr){
+        	dataType: "xml",
+        	success: function(xhr){
         		 //성공시
         		 alert("success");
-        		 var listPage = "http://localhost:8080/ITPLE-Sample-Project/result";    
-				 $(location).attr('href',listPage);
+//         		 var listPage = "http://localhost:8080/ITPLE-Sample-Project/result";    
+// 				 $(location).attr('href',listPage);
         		 
         	 },
         		  error: function(xhr){      

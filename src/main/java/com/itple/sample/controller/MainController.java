@@ -53,8 +53,6 @@ public class MainController {
 		user.setPhone(phone);
 		user.setCity(city);
 
-		logger.debug("data {} : " + user.toString());
-
 		Serializer serializer = new Persister();
 
 		Writer writer = new OutputStreamWriter(System.out);
@@ -64,13 +62,12 @@ public class MainController {
 
 		serializer.write(user, writer);
 
-		return "/create";
+		return "/result";
 	}
 
 	@RequestMapping(value = "/result", method = RequestMethod.GET)
-	public String result(HttpServletRequest request, HttpServletResponse response, ModelMap model) throws Throwable {
+	public String result(HttpServletRequest request, HttpServletResponse response, ModelMap model, @ModelAttribute User user) throws Throwable {
 
-		User user = new User();
 
 		model.put("user", user);
 

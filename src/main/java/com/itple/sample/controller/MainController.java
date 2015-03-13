@@ -1,6 +1,7 @@
 package com.itple.sample.controller;
 
 import java.io.OutputStreamWriter;
+import java.io.StringWriter;
 import java.io.Writer;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,41 +40,29 @@ public class MainController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String info(HttpServletRequest request, HttpServletResponse response, User user) throws Throwable {
-
-		String name = request.getParameter("name");
-		String email = request.getParameter("email");
-		String gender = request.getParameter("gender");
-		String phone = request.getParameter("phone");
-		String city = request.getParameter("city");
-
-		user.setName(name);
-		user.setEmail(email);
-		user.setGender(gender);
-		user.setPhone(phone);
-		user.setCity(city);
+	@ResponseBody
+	public String info(HttpServletRequest request, HttpServletResponse response, @ModelAttribute User user) throws Throwable {
+	
+		logger.debug(user.toString());
 
 		Serializer serializer = new Persister();
-
-		Writer writer = new OutputStreamWriter(System.out);
-
-		logger.debug("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
-		logger.debug("data {} : " + user.toString());
-
-		serializer.write(user, writer);
-
-		return "/result";
+		StringWriter out = new StringWriter();
+		
+		serializer.write(user, out);
+		String resultXml = out.toString();
+		
+		return resultXml;
 	}
 
-	@RequestMapping(value = "/result", method = RequestMethod.GET)
+	@RequestMapping(value = "/create2", method = RequestMethod.GET)
 	public String result(HttpServletRequest request, HttpServletResponse response, ModelMap model, @ModelAttribute User user) throws Throwable {
 
-
+		String returnXml ="";
 		model.put("user", user);
 
 		logger.debug("result");
 
-		return "/result";
+		return returnXml;
 	}
 
 }

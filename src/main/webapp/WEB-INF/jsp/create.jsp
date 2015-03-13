@@ -8,7 +8,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>ITPLE Sample Project REST Example</title>
 	
-	<script type="text/javascript" src="${contextPath}/resources/js/lib/jquery-1.8.0.js"></script>
+	<script type="text/javascript" src="${contextPath}/resources/js/lib/jquery-1.9.1.js"></script>
 	<script type="text/javascript" src="${contextPath}/resources/js/lib/jquery-ui-1.11.1/jquery-ui.js"></script>
 	
 	
@@ -94,6 +94,9 @@
 					</select>
 				</td>
 			</tr>
+			<tr>
+			<th>response</th>
+			<td>response1 <input type="radio" id="res1" name="res" value="res1"/>  response2 <input type="radio" id="res2" name="res" value="res2" />
 		</table>
 		</form>
 	<br><br>
@@ -105,6 +108,9 @@
 <script type="text/javascript">
 	
 $(document).ready(function(){
+	
+
+
 	
 	$("#selEmail02").change(function() {
 		var value = $( this ).val();
@@ -125,13 +131,16 @@ $(document).ready(function(){
 	});
 	
 	$("#submit_btn").click(function() {
-		
+    	console.log($("#form").serialize());
 		var name = $("#name").val();
 		var gender = $('input:radio[name=gender]:checked').val();
 		var email =$("#email01").val() + "@" + $("#email02").val();
 		var phone = $("#phone01").val() + "-" + $("#phone02").val() + "-" + $("#phone03").val();
 		var city = $("#city").val();
-		var num_regExp = /^[0-9]*$/;  	
+		var num_regExp = /^[0-9]{4}$/;  	
+		var email_regExp = /[A-Za-z0-9-]{2,}\.[A-Za-z0-9]{2,}/i;
+		var url ="";
+		var param ="";
 		
 		$("input[name$='email']").val(email);
 		$("input[name$='phone']").val(phone);
@@ -148,7 +157,7 @@ $(document).ready(function(){
 			return false;	
 		}
         
-		if($("#selEmail02 option").index("#selEmail02 option:selected") == 0) {
+		if($("#selEmail02 option").index("#selEmail02 option:selected") == 0 && !$.trim($("#email02").val()).length ) {
 			alert("email을 선택해 주십시오");
 			$("#selEmail02").focus();
 			return false;
@@ -159,6 +168,13 @@ $(document).ready(function(){
         	$("#email01").focus();
         	return false;
         }
+        
+        if(!email_regExp.test($("input[name$='email02']").val())) {
+        	alert("email 형식이잘못되었습니다 ex) aaa.naver.com")
+        	$("#email02").focus();
+        	return false;
+        }
+        
         
         if($("#phone01 option").index($("#phone01 option:selected")) == 0) {
         	alert("phone을 선택해 주십시오");
@@ -180,16 +196,16 @@ $(document).ready(function(){
         }
         
         if(!num_regExp.test($("input[name$='phone02']").val())) {
-          	alert("phone은 숫자만 입력해 주세요");
+          	alert("phone을 다시 입력해주세요");
           	$("#phone02").val("");
           	$("#phone02").focus();
           	return false;
           }
         
         if(!num_regExp.test($("input[name$='phone03']").val())) {
-        	alert("phone은 숫자만 입력해 주세요");
+        	alert("phone을 다시 입력해주세요");
         	$("#phone03").val("");
-        	$("phone03").focus();
+        	$("#phone03").focus();
         	return false;
         }
         
@@ -198,24 +214,32 @@ $(document).ready(function(){
 			$("#city").focus();
 			return false;
 		}
-       
+        
+        
+    	if( $("input:radio[id='res1']").is(":checked")) {
+    		console.log("res1 checked");
+    		//버튼1 눌렀을 때 url 
+    	}
+
+    	if( $("input:radio[id='res2']").is(":checked")) {
+    		console.log("res2 checked");
+    		//버튼2 눌렀을 때 url
+    	}
+    	
         $.ajax({
         	type: "post",
         	url : "http://localhost:8080/ITPLE-Sample-Project/create",
-        	data : $("#form").serialize(),
         	dataType: "xml",
-        	success: function(xhr){
-        		 //성공시
-        		 alert("success");
-//         		 var listPage = "http://localhost:8080/ITPLE-Sample-Project/result";    
-// 				 $(location).attr('href',listPage);
-        		 
-        	 },
-        		  error: function(xhr){      
-        		//실패시
-        		 alert("failed");
-        		  }        
-        });
+        	data : $("#form").serialize()
+        	})
+        	 .done(function(xhr){
+       		 	//성공시
+       		 	alert("success");       		 
+       	 	})
+       		 .fail(function(xhr){      
+       			//실패시
+       		 	alert("failed");
+       		});
         
         return false;
 	});

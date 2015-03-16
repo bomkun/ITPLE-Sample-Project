@@ -211,6 +211,7 @@ $(document).ready(function(){
         
         if($("#city option").index($("#city option:selected")) == 0) {
 			$("#city").focus();
+			alert("city를 선택해주세요");
 			return false;
 		}
         

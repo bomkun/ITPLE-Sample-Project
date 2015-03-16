@@ -131,16 +131,16 @@ $(document).ready(function(){
 	});
 	
 	$("#submit_btn").click(function() {
-    	console.log($("#form").serialize());
 		var name = $("#name").val();
 		var gender = $('input:radio[name=gender]:checked').val();
 		var email =$("#email01").val() + "@" + $("#email02").val();
 		var phone = $("#phone01").val() + "-" + $("#phone02").val() + "-" + $("#phone03").val();
 		var city = $("#city").val();
-		var num_regExp = /^[0-9]{4}$/;  	
+		var num_regExp = /^[0-9]{3,4}$/;  	
 		var email_regExp = /[A-Za-z0-9-]{2,}\.[A-Za-z0-9]{2,}/i;
 		var url ="";
 		var param ="";
+		var contentType ="";
 		
 		$("input[name$='email']").val(email);
 		$("input[name$='phone']").val(phone);
@@ -210,35 +210,45 @@ $(document).ready(function(){
         }
         
         if($("#city option").index($("#city option:selected")) == 0) {
-			alert("city를 선택해 주십시오");
 			$("#city").focus();
 			return false;
 		}
         
         
     	if( $("input:radio[id='res1']").is(":checked")) {
-    		console.log("res1 checked");
-    		//버튼1 눌렀을 때 url 
+    		url = "http://localhost:8080/ITPLE-Sample-Project/create";
+    		param = $("#form").serialize();
+    		contentType = "application/x-www-form-urlencoded; charset=UTF-8";
     	}
 
     	if( $("input:radio[id='res2']").is(":checked")) {
     		console.log("res2 checked");
-    		//버튼2 눌렀을 때 url
+    		url = "http://localhost:8080/ITPLE-Sample-Project/create2";
+    		param = "<user><name> "+ name + "</name>"
+    				+ "<gender>" + gender + "</gender>"
+    				+ "<email>" + email + "</email>"
+    				+ "<phone>" + phone + "</phone>"
+    				+ "</city>" + city + "</city>"
+    				+ "</user>";
+    		contentType = "application/xml;charset=utf-8";
     	}
     	
         $.ajax({
         	type: "post",
-        	url : "http://localhost:8080/ITPLE-Sample-Project/create",
+        	url : url,
         	dataType: "xml",
-        	data : $("#form").serialize()
+        	data : param,
+        	contentType : contentType
         	})
         	 .done(function(xhr){
        		 	//성공시
-       		 	alert("success");       		 
+       		 	alert("success");
+       		 	alert(param);
        	 	})
        		 .fail(function(xhr){      
        			//실패시
        		 	alert("failed");
+       		 	alert(param);
        		});
         
         return false;

@@ -54,15 +54,20 @@ public class MainController {
 		return resultXml;
 	}
 
-	@RequestMapping(value = "/create2", method = RequestMethod.GET)
+	@RequestMapping(value = "/create2", method = RequestMethod.POST)
+	@ResponseBody
 	public String result(HttpServletRequest request, HttpServletResponse response, ModelMap model, @ModelAttribute User user) throws Throwable {
 
-		String returnXml ="";
-		model.put("user", user);
-
-		logger.debug("result");
-
-		return returnXml;
+		logger.debug("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
+		logger.debug(user.toString());
+		
+		Serializer serializer = new Persister();
+		StringWriter out = new StringWriter();
+		
+		serializer.write(user, out);
+		String resultXml = out.toString();
+		
+		return resultXml;
 	}
 
 }

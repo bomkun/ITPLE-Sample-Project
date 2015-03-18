@@ -215,6 +215,13 @@ $(document).ready(function(){
 			return false;
 		}
         
+
+		if($('input:radio[name=res]:checked').length <1 ) {
+			alert("response를 선택 하세요");
+			$("#res1").focus();
+			return false;	
+		}
+        
         
     	if( $("input:radio[id='res1']").is(":checked")) {
     		url = "http://localhost:8080/ITPLE-Sample-Project/create";
@@ -225,7 +232,8 @@ $(document).ready(function(){
     	if( $("input:radio[id='res2']").is(":checked")) {
     		console.log("res2 checked");
     		url = "http://localhost:8080/ITPLE-Sample-Project/create2";
-    		param = "<user><name> "+ name + "</name>"
+    		param = "<user>"
+    				+ "<name> "+ name + "</name>"
     				+ "<gender>" + gender + "</gender>"
     				+ "<email>" + email + "</email>"
     				+ "<phone>" + phone + "</phone>"
@@ -233,6 +241,8 @@ $(document).ready(function(){
     				+ "</user>";
     		contentType = "application/xml;charset=utf-8";
     	}
+    	
+    	
     	
         $.ajax({
         	type: "post",

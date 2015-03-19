@@ -1,27 +1,25 @@
 package com.itple.sample.common.domain;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import org.simpleframework.xml.Element;
+import org.simpleframework.xml.Root;
 
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlRootElement(name="user")
+
+@Root(name="user")
 public class User {
 
-	@XmlElement(name="name")
+	@Element(name="name")
 	private String name;
 	
-	@XmlElement(name="gender")
+	@Element(name="gender")
 	private String gender;
 	
-	@XmlElement(name="email")
+	@Element(name="email")
 	private String email;
 	
-	@XmlElement(name="phone")
+	@Element(name="phone")
 	private String phone;
 	
-	@XmlElement(name="city")
+	@Element(name="city")
 	private String city;
 
 	public User() {

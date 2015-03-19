@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
+<beans:beans
 	xmlns="http://www.springframework.org/schema/beans" 
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -23,7 +23,10 @@
 	<!--리소스 매핑 설정  -->	
 	<mvc:resources mapping="/resources/**" location="/resources/" />		
 	
+	
+	
 	<!-- 어노테이션 방식의 컨트롤러를 사용할 때 필요한 DispatcherServlet 전략 Bean을 자동으로 등록해줌 -->
+	
 	
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
@@ -32,14 +35,14 @@
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
-	<bean id="stringMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
+	<beans:bean id="stringMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
 		<property name="supportedMediaTypes">
 			<list>
 				<value>text/plain;charset=UTF-8</value>
 				<value>text/html;charset=UTF-8</value>
 			</list>
 		</property>	
-	</bean>
+	</beans:bean>
 	
 	<beans:bean id="xmlConverter" class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter">
 		<beans:property name="supportedMediaTypes">
@@ -53,10 +56,10 @@
 	<mvc:default-servlet-handler />
 	
 	<!-- 웹 애플리케이션 WAR 파일 내에 포함된 뷰 템플릿을 찾음. prefix : 접두어 , suffix : 접미어 -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/jsp/" />
 		<property name="suffix" value=".jsp" />
-	</bean>
+	</beans:bean>
 	
 	<!-- xml ViewResolver -->
 
@@ -88,4 +91,4 @@
 			<beans:bean class="com.itple.sample.common.interceptor.ContextPathInterceptor" />
 		</mvc:interceptor> 
     </mvc:interceptors>
-</beans>
+</beans:beans>

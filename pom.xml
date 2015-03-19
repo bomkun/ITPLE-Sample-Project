@@ -34,6 +34,7 @@
 		<jackson.version>1.9.13</jackson.version>
 	</properties>
 
+		
 	
 	<repositories>
 		<repository>
@@ -129,6 +130,13 @@
 			<version>2.7.1</version>
 		</dependency>
 
+		<!-- XmlBeans  -->
+		<dependency>
+			<groupId>org.apache.xmlbeans</groupId>
+			<artifactId>xmlbeans</artifactId>
+			<version>2.3.0</version>		
+		</dependency>
+	
 		<!-- jackson-core-asl -->
 		<dependency>
 			<groupId>org.codehaus.jackson</groupId>

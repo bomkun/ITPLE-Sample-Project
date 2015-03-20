@@ -3,9 +3,16 @@ package com.itple.sample.common.domain;
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
 
+import com.itple.sample.common.transform.XMLBean;
 
-@Root(name="user")
-public class User {
+
+@Root(name="user" )
+public class User extends XMLBean{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Element(name="name")
 	private String name;

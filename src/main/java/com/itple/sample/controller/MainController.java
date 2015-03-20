@@ -54,6 +54,7 @@ public class MainController {
 	@ResponseBody
 	public String result(HttpServletRequest request, HttpServletResponse response, ModelMap model, @ModelAttribute User user) throws Throwable {
 
+		
 		logger.debug("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		logger.debug(user.toString());
 		

@@ -141,6 +141,7 @@ $(document).ready(function(){
 		var url ="";
 		var param ="";
 		var contentType ="";
+		var xml ="";
 		
 		$("input[name$='email']").val(email);
 		$("input[name$='phone']").val(phone);
@@ -232,13 +233,14 @@ $(document).ready(function(){
     	if( $("input:radio[id='res2']").is(":checked")) {
     		console.log("res2 checked");
     		url = "http://localhost:8080/ITPLE-Sample-Project/create2";
-    		param = "<user>"
-    				+ "<name> "+ name + "</name>"
-    				+ "<gender>" + gender + "</gender>"
-    				+ "<email>" + email + "</email>"
-    				+ "<phone>" + phone + "</phone>"
-    				+ "</city>" + city + "</city>"
-    				+ "</user>";
+    		xml =  "<user>"
+				+ "<name> "+ name + "</name>"
+				+ "<gender>" + gender + "</gender>"
+				+ "<email>" + email + "</email>"
+				+ "<phone>" + phone + "</phone>"
+				+ "</city>" + city + "</city>"
+				+ "</user>";
+    		param = xml ;
     		contentType = "application/xml;charset=utf-8";
     	}
     	

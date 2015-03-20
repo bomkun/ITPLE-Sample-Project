@@ -30,25 +30,27 @@
 	
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">
-			<beans:ref bean="stringMessageConverter" />	
-			<beans:ref bean="xmlConverter" />
+			<beans:ref bean="simpleXmlMessageConverter" />
 		</mvc:message-converters>
 	</mvc:annotation-driven>
 	
-	<beans:bean id="stringMessageConverter" class="org.springframework.http.converter.StringHttpMessageConverter">
-		<property name="supportedMediaTypes">
-			<list>
-				<value>text/plain;charset=UTF-8</value>
-				<value>text/html;charset=UTF-8</value>
-			</list>
-		</property>	
+	
+	<beans:bean id="xmlHeader" class="org.simpleframework.xml.stream.Format">
+		<constructor-arg>
+		<value><![CDATA[<?xml version="1.0" encoding="UTF-8"?>]]> </value>
+		</constructor-arg>
 	</beans:bean>
 	
-	<beans:bean id="xmlConverter" class="org.springframework.http.converter.xml.Jaxb2RootElementHttpMessageConverter">
-		<beans:property name="supportedMediaTypes">
+	<beans:bean id="persister" class="org.simpleframework.xml.core.Persister">
+	<constructor-arg ref="xmlHeader" />
+	</beans:bean>
+
+	<beans:bean id="simpleXmlMessageConverter" class="com.itple.sample.common.transform.SimpleXmlMessageConverter">
+		<beans:property name="persister" ref="persister" />
+		<beans:property name="supportedMediaTypes" >
 			<beans:list>
-				<beans:value>text/xml;charset=UTF-8</beans:value>
 				<beans:value>application/xml;charset=UTF-8</beans:value>
+				<beans:value>text/xml;charset=UTF-8</beans:value>
 			</beans:list>
 		</beans:property>
 	</beans:bean>

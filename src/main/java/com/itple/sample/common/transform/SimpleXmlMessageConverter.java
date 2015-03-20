@@ -9,12 +9,11 @@ package com.itple.sample.common.transform;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.StringWriter;
 import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map.Entry;
-
-import org.apache.xmlbeans.impl.tool.XMLBean;
 import org.simpleframework.xml.core.Persister;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
@@ -46,7 +45,7 @@ public class SimpleXmlMessageConverter extends AbstractHttpMessageConverter<Obje
 	
 	/**
 	 * 변환기가 지원되는지 여부를 나타냄
-	 * Spring MVC 및 REST Template 에서 외부와 I/O 발생 시 오고나는 객체가 XMLBean 객체를 상속받았을 때 처리 
+	 * Spring MVC 및 REST Template 에서 외부와 I/O 발생 시 오고가는 객체가 XMLBean 객체를 상속받았을 때 처리 
 	 */
 	@Override
 	protected boolean supports(Class<?> clazz) {
@@ -78,23 +77,92 @@ public class SimpleXmlMessageConverter extends AbstractHttpMessageConverter<Obje
 				
 				if(inputMessage.getBody() != null) {
 					readString = FileCopyUtils.copyToString(new InputStreamReader(inputMessage.getBody(), Charset.forName("UTF-8")));
+					logger.debug("read String" + readString);
 				}
+				readString = readString.replaceAll("\n", "");
 				
+				/*
+				 * 데이터 포맷 , ResitryMatcher 
+				 * DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				RegistryMatcher registryMatcher = new RegistryMatcher();
+				registryMatcher.bind(Date.class, new DateFormatTransformer(dateFormat));
+				Serializer serializer = new Persister(registryMatcher);
+				return serializer.read(clazz, readString);*/
 				
+				return persister.read(clazz, readString);
+				
+			} else {
+				if (inputMessage.getBody() != null) {
+					readString = FileCopyUtils.copyToString(new InputStreamReader(inputMessage.getBody(), Charset.forName("UTF-8")));
+					logger.debug("read String " + readString);
+				}
+				readString = readString.replaceAll("\n", "");
+				
+				/*
+				 * 데이터 포맷 , ResitryMatcher 
+				 * DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+				RegistryMatcher registryMatcher = new RegistryMatcher();
+				registryMatcher.bind(Date.class, new DateFormatTransformer(dateFormat));
+				Serializer serializer = new Persister(registryMatcher);
+				return serializer.read(clazz, readString);*/
+			
+				return persister.read(clazz, readString);
 			}
-		} catch (Exception e) {
-			// TODO: handle exception
+			
+		} catch (Exception e) { //변환 실패 시
+			logger.error(e);
+			/*
+			 * 요청 데이터가 있으면 어떤 내용으로 에러났는지 출력 처리
+			 * 
+			 */
+			
+			if (inputMessage.getBody() != null && inputMessage.getBody().markSupported()) {
+				inputMessage.getBody().reset();
+				logger.error(FileCopyUtils.copyToString(new InputStreamReader(inputMessage.getBody(), "UTF-8")));
+			} else {
+				logger.error("input stream is nullor printed ..");
+			}
+			
+			throw new HttpMessageNotReadableException(e.getMessage()); //규격에 의해 Exception을 던진다 
 		}
-		
-		
-		return null;
-		
 	}
-
+	
+	/**
+	 * 외부로 보낸 객체를 XML로 변환 처리 한다 
+	 * 
+	 */
 	@Override
 	protected void writeInternal(Object t, HttpOutputMessage outputMessage) throws IOException, HttpMessageNotWritableException {
-		// TODO Auto-generated method stub
 		
+		try {
+			
+			StringWriter writer = new StringWriter();
+			
+			/*
+			 *  데이터 포맷 , ResitryMatcher 
+			 *  DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			RegistryMatcher registryMatcher = new RegistryMatcher();
+			registryMatcher.bind(Date.class, new DateFormatTransformer(dateFormat));
+			Format xmlHeader = new Format("<?xml version=\"1.0\" encoding= \"UTF-8\" ?>"); 	
+			Serializer serializer = new Persister(registryMatcher, xmlHeader);
+			serializer.write(t, writer);*/
+			
+			persister.write(t, writer);
+			
+			if(logger.isDebugEnabled()) {
+				logger.debug("t : " + t);
+			}
+
+			logger.debug(writer.toString());
+			
+			//전송시 xml을 /n -> \r\n으로 변경 
+			outputMessage.getBody().write(writer.toString().replaceAll("\n", "\r\n").getBytes("UTF-8"));
+			
+		} catch (Exception e) {
+			logger.error(outputMessage.getBody());
+			logger.error(e);
+			throw new HttpMessageNotReadableException(e.getMessage()); //규격에 의해 Exception을 던진다 
+		}
 	}
 	
 	

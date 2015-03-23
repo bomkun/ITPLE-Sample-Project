@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-
-<beans>
- <bean name="ajaxResponseXMLView"  class="net.wiseant.web.xml.AjaxResponseXMLView">
-     <property name="contentType">
-        <value>text/xml;charset=utf-8</value>
-        </property>
-    </bean>
-</beans>

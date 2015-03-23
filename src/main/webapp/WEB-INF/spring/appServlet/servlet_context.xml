@@ -24,9 +24,7 @@
 	<mvc:resources mapping="/resources/**" location="/resources/" />		
 	
 	
-	
 	<!-- 어노테이션 방식의 컨트롤러를 사용할 때 필요한 DispatcherServlet 전략 Bean을 자동으로 등록해줌 -->
-	
 	
 	<mvc:annotation-driven>
 		<mvc:message-converters register-defaults="true">

@@ -7,11 +7,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.simpleframework.xml.Serializer;
 import org.simpleframework.xml.core.Persister;
+import org.simpleframework.xml.stream.Format;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -38,7 +40,7 @@ public class MainController {
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	@ResponseBody
 	public String info(HttpServletRequest request, HttpServletResponse response, @ModelAttribute User user) throws Throwable {
-	
+
 		logger.debug(user.toString());
 
 		Serializer serializer = new Persister();
@@ -52,8 +54,7 @@ public class MainController {
 
 	@RequestMapping(value = "/create2", method = RequestMethod.POST)
 	@ResponseBody
-	public String result(HttpServletRequest request, HttpServletResponse response, ModelMap model, @ModelAttribute User user) throws Throwable {
-
+	public String result(HttpServletRequest request, HttpServletResponse response, ModelMap model, @RequestBody User user) throws Throwable {
 		
 		logger.debug("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA");
 		logger.debug(user.toString());

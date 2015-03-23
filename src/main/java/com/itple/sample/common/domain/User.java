@@ -10,7 +10,7 @@ import com.itple.sample.common.transform.XMLBean;
 public class User extends XMLBean{
 
 	/**
-	 * 
+	 * user 객체 
 	 */
 	private static final long serialVersionUID = 1L;
 

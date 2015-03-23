@@ -17,10 +17,10 @@
 	
 </head>
 <body>
-		<div id="title_info" align="center">
-			<b>Being Java | Registration Form</b>
-			<span class="glyphicon glyphicon-home"></span>
-		</div>
+	<div id="title_info" align="center">
+		<b>Being Java | Registration Form</b>
+		<span class="glyphicon glyphicon-home"></span>
+	</div>
 		
 	<div id="contents_info" align="center">
 		<form name="form" id="form" method="post" onsubmit="return false;">
@@ -108,9 +108,6 @@
 <script type="text/javascript">
 	
 $(document).ready(function(){
-	
-
-
 	
 	$("#selEmail02").change(function() {
 		var value = $( this ).val();
@@ -238,13 +235,10 @@ $(document).ready(function(){
 				+ "<gender>" + gender + "</gender>"
 				+ "<email>" + email + "</email>"
 				+ "<phone>" + phone + "</phone>"
-				+ "</city>" + city + "</city>"
-				+ "</user>";
+				+ "<city>" + city + "</city></user>";
     		param = xml ;
     		contentType = "application/xml;charset=utf-8";
     	}
-    	
-    	
     	
         $.ajax({
         	type: "post",
@@ -268,6 +262,5 @@ $(document).ready(function(){
 	});
 	
 });	
-
 </script>
 </html>

@@ -42,7 +42,6 @@ public class SimpleXmlMessageConverter extends AbstractHttpMessageConverter<Obje
 		this.persister = persister;
 	}
 
-	
 	/**
 	 * 변환기가 지원되는지 여부를 나타냄
 	 * Spring MVC 및 REST Template 에서 외부와 I/O 발생 시 오고가는 객체가 XMLBean 객체를 상속받았을 때 처리 
@@ -77,7 +76,7 @@ public class SimpleXmlMessageConverter extends AbstractHttpMessageConverter<Obje
 				
 				if(inputMessage.getBody() != null) {
 					readString = FileCopyUtils.copyToString(new InputStreamReader(inputMessage.getBody(), Charset.forName("UTF-8")));
-					logger.debug("read String" + readString);
+					logger.debug("read String"  +  readString);
 				}
 				readString = readString.replaceAll("\n", "");
 				
@@ -120,7 +119,7 @@ public class SimpleXmlMessageConverter extends AbstractHttpMessageConverter<Obje
 				inputMessage.getBody().reset();
 				logger.error(FileCopyUtils.copyToString(new InputStreamReader(inputMessage.getBody(), "UTF-8")));
 			} else {
-				logger.error("input stream is nullor printed ..");
+				logger.error("input stream is null or printed ..");
 			}
 			
 			throw new HttpMessageNotReadableException(e.getMessage()); //규격에 의해 Exception을 던진다 
